@@ -17,7 +17,7 @@ class calculatorActions extends sfActions
   */
   public function executeCalculator(sfWebRequest $request)
   {
-    $action = $request->getParameter('do'); 
+    $action = $request->getParameter('do');
     $number_a = $request->getParameter("number_a", 0);
     $number_b = $request->getParameter("number_b", 0);
 
@@ -40,8 +40,8 @@ class calculatorActions extends sfActions
 
   /**
    * Add param number_a with number_b
-   * 
-   * @param sfWebRequest $request 
+   *
+   * @param sfWebRequest $request
    * @access public
    * @return void
    */
@@ -50,14 +50,14 @@ class calculatorActions extends sfActions
     $number_a = $request->getParameter("number_a", 0);
     $number_b = $request->getParameter("number_b", 0);
 
-    $this->result = $number_a + $number_b;
+    $this->result = Calculator::add($number_a, $number_b);
     $this->setTemplate("result");
   }
 
   /**
    * Sub param number_a by number_b
-   * 
-   * @param sfWebRequest $request 
+   *
+   * @param sfWebRequest $request
    * @access public
    * @return void
    */
@@ -66,14 +66,14 @@ class calculatorActions extends sfActions
     $number_a = $request->getParameter("number_a", 0);
     $number_b = $request->getParameter("number_b", 0);
 
-    $this->result = $number_a - $number_b;
+    $this->result = Calculator::sub($number_a, $number_b);
     $this->setTemplate("result");
   }
 
   /**
    * Multiply param number_a by number_b
-   * 
-   * @param sfWebRequest $request 
+   *
+   * @param sfWebRequest $request
    * @access public
    * @return void
    */
@@ -82,14 +82,14 @@ class calculatorActions extends sfActions
     $number_a = $request->getParameter("number_a", 0);
     $number_b = $request->getParameter("number_b", 0);
 
-    $this->result = $number_a * $number_b;
+    $this->result = Calculator::mul($number_a, $number_b);
     $this->setTemplate("result");
   }
 
   /**
    * Divide param number_a by number_b
-   * 
-   * @param sfWebRequest $request 
+   *
+   * @param sfWebRequest $request
    * @access public
    * @return void
    */
@@ -98,7 +98,7 @@ class calculatorActions extends sfActions
     $number_a = $request->getParameter("number_a", 0);
     $number_b = $request->getParameter("number_b", 0);
 
-    $this->result = $number_a / $number_b;
+    $this->result = Calculator::div($number_a, $number_b);
     $this->setTemplate("result");
   }
 }
