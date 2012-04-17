@@ -47,11 +47,9 @@ class calculatorActions extends sfActions
    */
   public function executeAdd(sfWebRequest $request)
   {
-    $number_a = $request->getParameter("number_a", 0);
-    $number_b = $request->getParameter("number_b", 0);
+    list($number_a, $number_b) = $this->getParamNumbers($request);
 
-    $this->result = Calculator::add($number_a, $number_b);
-    $this->setTemplate("result");
+    $this->renderResult(Calculator::add($number_a, $number_b));
   }
 
   /**
@@ -63,11 +61,9 @@ class calculatorActions extends sfActions
    */
   public function executeSub(sfWebRequest $request)
   {
-    $number_a = $request->getParameter("number_a", 0);
-    $number_b = $request->getParameter("number_b", 0);
+    list($number_a, $number_b) = $this->getParamNumbers($request);
 
-    $this->result = Calculator::sub($number_a, $number_b);
-    $this->setTemplate("result");
+    $this->renderResult(Calculator::sub($number_a, $number_b));
   }
 
   /**
@@ -79,11 +75,9 @@ class calculatorActions extends sfActions
    */
   public function executeMultiply(sfWebRequest $request)
   {
-    $number_a = $request->getParameter("number_a", 0);
-    $number_b = $request->getParameter("number_b", 0);
+    list($number_a, $number_b) = $this->getParamNumbers($request);
 
-    $this->result = Calculator::mul($number_a, $number_b);
-    $this->setTemplate("result");
+    $this->renderResult(Calculator::mul($number_a, $number_b));
   }
 
   /**
@@ -95,10 +89,22 @@ class calculatorActions extends sfActions
    */
   public function executeDivide(sfWebRequest $request)
   {
+    list($number_a, $number_b) = $this->getParamNumbers($request);
+
+    $this->renderResult(Calculator::div($number_a, $number_b));
+  }
+
+  protected function getParamNumbers(sfWebRequest $request)
+  {
     $number_a = $request->getParameter("number_a", 0);
     $number_b = $request->getParameter("number_b", 0);
 
-    $this->result = Calculator::div($number_a, $number_b);
+    return array($number_a, $number_b);
+  }
+
+  protected function renderResult($result)
+  {
+    $this->result = $result;
     $this->setTemplate("result");
   }
 }
