@@ -64,6 +64,10 @@ class Calculator
    */
   public static function div($a, $b)
   {
+    if ($b == 0)
+    {
+      throw new Exception("Unable to divide by zero");
+    }
     return $a/$b;
   }
 }
