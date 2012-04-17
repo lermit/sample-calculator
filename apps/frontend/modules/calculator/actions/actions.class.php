@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * calculator actions.
+ *
+ * @package    calculator
+ * @subpackage calculator
+ * @author     Romain THERRAT
+ * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ */
+class calculatorActions extends sfActions
+{
+ /**
+  * Executes index action
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeIndex(sfWebRequest $request)
+  {
+    $this->forward('default', 'module');
+  }
+}
