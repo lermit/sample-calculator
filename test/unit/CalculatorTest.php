@@ -1,5 +1,5 @@
 <?php
-  
+
 require_once( dirname(__FILE__)."/../bootstrap/unit.php");
 
 $t = new lime_test(13);
@@ -23,5 +23,13 @@ $t->is(Calculator::mul(0.5,2), 1);
 $t->is(Calculator::div(13, 13), 1);
 $t->is(Calculator::div(24, 2), 12);
 $t->is(Calculator::div(13, 2), 6.5);
-$t->is(Calculator::div(13, 0), null);
+
+try 
+{
+  $t->is(Calculator::div(13, 0), null);
+  $t->fail("Divide by zero throw an exception");
+} catch ( Exception $e )
+{
+  $t->pass("Divide by zero throw an exception");
+}
 
